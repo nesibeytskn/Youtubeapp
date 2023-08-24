@@ -30,7 +30,7 @@ const HomeScreen = () => {
   useEffect(() => {
     getVideos();
   }, []);
-  console.log(videos[0]?.snippet?.thumbnails?.standard?.url);
+  //console.log(videos[0]?.snippet);
   return (
     <View className="flex-1 px-2">
       <Header />
@@ -41,7 +41,7 @@ const HomeScreen = () => {
           return (
             <HomeCard
               videoInfo={item}
-              onPress={() => navigation.navigate('VideoScreen')}
+              onPress={() => navigation.navigate('VideoScreen', {video: item})}
             />
           );
         }}

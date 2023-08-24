@@ -2,15 +2,19 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import MyIcon from './CoreComponents/MyIcon';
 
-const HomeCard = ({onPress, videoInfo}) => {
-  console.log(videoInfo);
+const HomeCard = ({onPress, videoInfo, theme}) => {
+  //console.log(videoInfo);
+  const publishDate = videoInfo?.snippet?.publishedAt.split('');
+  const stringPublishDate = publishDate?.slice(11, 16).join('');
+  //console.log(stringPublishDate);
+  const videoTitle = videoInfo?.snippet?.title.split('').slice(0, 35).join('');
   return (
     <TouchableOpacity onPress={onPress}>
       <View className="  justify-center items-center relative">
         <Image
           className="w-screen h-60"
           source={{
-            uri: `${videoInfo?.snippet?.thumbnails?.standard?.url}`,
+            uri: `${videoInfo?.snippet?.thumbnails.standard.url}`,
           }}
         />
         <View className="bg-slate-800 rounded absolute right-4 bottom-3 ">
@@ -28,13 +32,18 @@ const HomeCard = ({onPress, videoInfo}) => {
             }}
           />
           <View>
-            <Text className="text-white text-base font-semibold">
-              videonun adı
+            <Text
+              className={` ${
+                theme == 'dark' ? 'text-white' : 'text-black'
+              } text-base font-semibold`}>
+              {videoTitle}...
             </Text>
             <View className="flex-row gap-2">
-              <Text className="text-stone-600">Kanal adı</Text>
+              <Text className="text-stone-600">
+                {videoInfo?.snippet?.channelTitle}
+              </Text>
               <Text className="text-stone-600">250.000</Text>
-              <Text className="text-stone-600">16:00</Text>
+              <Text className="text-stone-600">{stringPublishDate}</Text>
             </View>
           </View>
         </View>

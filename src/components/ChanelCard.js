@@ -3,7 +3,7 @@ import React from 'react';
 import MyIcon from './CoreComponents/MyIcon';
 import YButton from './CoreComponents/YButton';
 
-const ChanelCard = () => {
+const ChanelCard = ({channelTitle}) => {
   return (
     <View>
       <View className=" p-2 flex-row justify-between items-center  bg-stone-900 border-stone-700 border-t-2 border-b-2 ">
@@ -15,7 +15,7 @@ const ChanelCard = () => {
             }}
           />
           <View>
-            <Text className="text-white ">udemig</Text>
+            <Text className="text-white ">{channelTitle}</Text>
             <View className="flex-row gap-2">
               <Text className="text-stone-500">5m abone</Text>
             </View>
