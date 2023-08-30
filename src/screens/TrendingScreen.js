@@ -5,6 +5,7 @@ import ChanelCard from '../components/ChanelCard';
 import ChangeCard from '../components/TrendsComponents/ChangeCard';
 import TreendingHeader from '../components/TrendsComponents/TreendingHeader';
 import HomeCard from '../components/HomeCard';
+import {defaultVideo} from '../utils/defaultVideo';
 
 const TrendingScreen = () => {
   const [changer, setChanger] = useState(0);
@@ -41,22 +42,22 @@ const TrendingScreen = () => {
       {changer == 0 ? (
         <>
           <TreendingHeader head={'Anlık trend videolar'} />
-          <HomeCard />
+          <HomeCard videoInfo={defaultVideo} />
         </>
       ) : changer == 1 ? (
         <>
           <TreendingHeader head={'Trend Müzikler'} />
-          <HomeCard />
+          <HomeCard videoInfo={defaultVideo} />
         </>
       ) : changer == 2 ? (
         <>
           <TreendingHeader head={'trend oyunlar'} />
-          <HomeCard />
+          <HomeCard videoInfo={defaultVideo} />
         </>
       ) : changer == 3 ? (
         <>
           <TreendingHeader head={'trend filmler'} />
-          <HomeCard />
+          <HomeCard videoInfo={defaultVideo} />
         </>
       ) : null}
     </View>

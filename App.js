@@ -3,14 +3,17 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BottomNavigation from './src/navigations/BottomNavigation';
 import {NavigationContainer} from '@react-navigation/native';
+import {VideoProvider} from './src/context/VideosStore';
 
 const App = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <NavigationContainer>
-        <BottomNavigation />
-      </NavigationContainer>
-    </SafeAreaView>
+    <VideoProvider>
+      <SafeAreaView style={{flex: 1}}>
+        <NavigationContainer>
+          <BottomNavigation />
+        </NavigationContainer>
+      </SafeAreaView>
+    </VideoProvider>
   );
 };
 

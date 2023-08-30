@@ -5,7 +5,7 @@ import Yinput from './CoreComponents/Yinput';
 
 const CommentsCard = () => {
   return (
-    <View>
+    <View className="mb-6">
       <View className="flex-row justify-between p-2 ">
         <Text className="text-white text-sm font-semibold ">yorumlar</Text>
         <MyIcon name={'chevron-expand-outline'} size={20} color={'white'} />

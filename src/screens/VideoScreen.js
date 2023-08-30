@@ -8,7 +8,7 @@ import {
   Touchable,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import MyIcon from '../components/CoreComponents/MyIcon';
 import VideoHeader from '../components/VideoHeader';
 import ChanelCard from '../components/ChanelCard';
@@ -17,8 +17,11 @@ import HomeCard from '../components/HomeCard';
 import axios from 'axios';
 import VideoPlayer from 'react-native-video';
 import {useNavigation} from '@react-navigation/native';
+import {VideoContext} from '../context/VideosStore';
+import Video from '../models/VideoModel';
 
 const VideoScreen = props => {
+  const {vvideos} = useContext(VideoContext);
   const navigation = useNavigation();
 
   console.log(props.route.params.video);
@@ -34,11 +37,11 @@ const VideoScreen = props => {
         className=" h-52">
         <VideoPlayer
           video={{
-            uri: videoInfo?.videoThumbnail,
+            uri: Video?.videoThumbnail,
           }}
-          //videoWidth={1600}
-          //videoHeight={900}
-          //thumbnail={{uri: videoDetail?.videoThumbnail}}
+          videoWidth={1600}
+          videoHeight={900}
+          thumbnail={{uri: videoDetail?.videoThumbnail}}
         />
       </TouchableOpacity>
       <ScrollView>
@@ -54,7 +57,7 @@ const VideoScreen = props => {
           {/*Alt Kısım (önerilen videolar) */}
           <View className=" bg-stone-900 " style={{flex: 1}}>
             <FlatList
-              data={videos}
+              data={vvideos}
               renderItem={({item}) => (
                 <HomeCard
                   videoInfo={item}
@@ -74,4 +77,4 @@ const VideoScreen = props => {
 
 export default VideoScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create();

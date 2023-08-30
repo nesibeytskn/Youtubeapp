@@ -1,11 +1,10 @@
 class Video {
   constructor(
     title,
-    channelTitle,
-    description,
     publishedAt,
     videoThumbnail,
     videoDuration,
+    channelTitle,
     videoId,
     videoHeader,
   ) {
