@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   FlatList,
+  Touchable,
   TouchableOpacity,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
@@ -15,39 +16,15 @@ import CommentsCard from '../components/CommentsCard';
 import HomeCard from '../components/HomeCard';
 import axios from 'axios';
 import VideoPlayer from 'react-native-video';
+import {useNavigation} from '@react-navigation/native';
 
 const VideoScreen = props => {
-  const list = [1, 2, 3, 4, 5];
+  const navigation = useNavigation();
+
   console.log(props.route.params.video);
   const [videoDetail, setVideoDetail] = useState(props.route.params.video);
   //console.log(videoDetail);
-  const videoTitle = videoDetail?.snippet?.title
-    .split('')
-    .slice(0, 35)
-    .join('');
-  const [videos, setVideos] = useState([]);
-  const getVideos = async () => {
-    try {
-      const response = await axios.get(
-        'https://www.googleapis.com/youtube/v3/videos',
-        {
-          params: {
-            key: 'AIzaSyB_mM2AqPqMS5Cr4sjtQw-EYxrQ19-H494',
-            part: 'snippet',
-            chart: 'mostPopular',
-            maxResult: 10,
-          },
-        },
-      );
-      //console.log(response.data.items);
-      setVideos(response.data.items);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getVideos();
-  }, []);
+
   return (
     <View className="flex-1 bg-stone-900 ">
       {/*Üst Kısım (video oynatma) */}
@@ -57,11 +34,11 @@ const VideoScreen = props => {
         className=" h-52">
         <VideoPlayer
           video={{
-            uri: 'https://www.youtube.com/watch?v=2Pmh2I1evQc&ab_channel=G%C3%BCld%C3%BCrG%C3%BCld%C3%BCr',
+            uri: videoInfo?.videoThumbnail,
           }}
-          videoWidth={1600}
-          videoHeight={900}
-          thumbnail={{uri: videoDetail?.videoThumbnail}}
+          //videoWidth={1600}
+          //videoHeight={900}
+          //thumbnail={{uri: videoDetail?.videoThumbnail}}
         />
       </TouchableOpacity>
       <ScrollView>
@@ -79,7 +56,13 @@ const VideoScreen = props => {
             <FlatList
               data={videos}
               renderItem={({item}) => (
-                <HomeCard videoInfo={item} theme={'dark'} />
+                <HomeCard
+                  videoInfo={item}
+                  theme={'dark'}
+                  onPress={() =>
+                    navigation.navigate('VideoScreen', {video: item})
+                  }
+                />
               )}
             />
           </View>

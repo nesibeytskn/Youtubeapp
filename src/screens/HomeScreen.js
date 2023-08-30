@@ -4,33 +4,26 @@ import Header from '../components/Header';
 import HomeCard from '../components/HomeCard';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import VideosController from '../controller/VideosController';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [videos, setVideos] = useState([]);
-  const getVideos = async () => {
+
+  useEffect(() => {
+    fetchVideo();
+  }, []);
+
+  const fetchVideo = async () => {
     try {
-      const response = await axios.get(
-        'https://www.googleapis.com/youtube/v3/videos',
-        {
-          params: {
-            key: 'AIzaSyB_mM2AqPqMS5Cr4sjtQw-EYxrQ19-H494',
-            part: 'snippet',
-            chart: 'mostPopular',
-            maxResult: 10,
-          },
-        },
-      );
-      //console.log(response.data.items);
-      setVideos(response.data.items);
+      const fetchedVideo = await VideosController.getVideos();
+      setVideos(fetchedVideo);
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getVideos();
-  }, []);
-  //console.log(videos[0]?.snippet);
+
+  //console.log(videos[3]?.id);
   return (
     <View className="flex-1 px-2">
       <Header />
