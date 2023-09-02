@@ -24,9 +24,9 @@ const VideoScreen = props => {
   const {vvideos} = useContext(VideoContext);
   const navigation = useNavigation();
 
-  console.log(props.route.params.video);
   const [videoDetail, setVideoDetail] = useState(props.route.params.video);
   //console.log(videoDetail);
+  //console.log(videoDetail.videoThumbnail); // Bu URL'nin doğru olduğunu kontrol edin
 
   return (
     <View className="flex-1 bg-stone-900 ">
@@ -35,13 +35,10 @@ const VideoScreen = props => {
       <TouchableOpacity
         onLongPress={() => console.log('merhaba')}
         className=" h-52">
-        <VideoPlayer
-          video={{
-            uri: Video?.videoThumbnail,
-          }}
-          videoWidth={1600}
-          videoHeight={900}
-          thumbnail={{uri: videoDetail?.videoThumbnail}}
+        {}
+        <Image
+          className="w-screen h-60"
+          source={{uri: videoDetail.videoThumbnail}}
         />
       </TouchableOpacity>
       <ScrollView>
@@ -54,7 +51,9 @@ const VideoScreen = props => {
           />
           <ChanelCard channelTitle={videoDetail?.snippet?.channelTitle} />
           <CommentsCard />
+
           {/*Alt Kısım (önerilen videolar) */}
+
           <View className=" bg-stone-900 " style={{flex: 1}}>
             <FlatList
               data={vvideos}
@@ -77,4 +76,9 @@ const VideoScreen = props => {
 
 export default VideoScreen;
 
-const styles = StyleSheet.create();
+const styles = StyleSheet.create(
+  (videostyle = {
+    width: 100,
+    height: 100,
+  }),
+);
