@@ -27,7 +27,7 @@ const VideoScreen = props => {
   const [videoDetail, setVideoDetail] = useState(props.route.params.video);
   //console.log(videoDetail);
   //console.log(videoDetail.videoThumbnail); // Bu URL'nin doğru olduğunu kontrol edin
-
+  console.log(vvideos.video, 'video');
   return (
     <View className="flex-1 bg-stone-900 ">
       {/*Üst Kısım (video oynatma) */}
