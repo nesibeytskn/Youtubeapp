@@ -8,4 +8,4 @@
 
 </p>
  
-  ![](./src/assets/images/youtubeapp.gif)
+  ![](./src/assets/images/ytubeg.gif)
